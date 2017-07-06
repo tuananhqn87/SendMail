@@ -2,7 +2,7 @@
 public class SendMailApp {
 
 	public static void main(String[] args) {
-		SendMailPanel window = new SendMailPanel();
+		SendMailUI window = new SendMailUI();
 		window.createAndShowGUI();
 	}
 }

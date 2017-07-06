@@ -2,6 +2,8 @@
 import java.util.EventObject;
 
 class SendMailEvent extends EventObject {
+
+	private static final long serialVersionUID = -3884219192927232301L;
 	private String server;
 	private String username;
 	private String password;
