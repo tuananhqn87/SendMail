@@ -1,15 +1,26 @@
 
 import java.util.EventObject;
 
+/**
+ * @author anhtran
+ * This class defined the event when submit send mail button. This class is extended from EventObject class
+ */
 class SendMailEvent extends EventObject {
 
 	private static final long serialVersionUID = -3884219192927232301L;
+	// The server name or IP address
 	private String server;
+	// Login username of email account
 	private String username;
+	// Login password of email account
 	private String password;
+	// Name of sender
 	private String sender;
+	// Recipient's email address
 	private String recipient;
+	// Email subject
 	private String subject;
+	// Email message
 	private String message;
 	
 	
@@ -18,7 +29,7 @@ class SendMailEvent extends EventObject {
 	}
 
 	/**
-	 * Method to sent authentication information to event
+	 * Method to send authentication information to event
 	 * @param server The SMTP server name
      * @param username The user name of email account
      * @param password The password of email account
@@ -30,7 +41,7 @@ class SendMailEvent extends EventObject {
 	}
 	
 	/**
-	 * Method to sent email content to event
+	 * Method to send email content to event
 	 * @param sender The email's sender
 	 * @param recipient The email's recipient
 	 * @param subject The email's subject

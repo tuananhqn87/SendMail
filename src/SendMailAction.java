@@ -34,11 +34,13 @@ class SendMailAction {
      * @return Return the session from SMTP server 
      */
     Session getSmtpSession(String server, String username, String password) {
-    	
+    		
+    		// Security values of SMTP connection
         final String JAVA_SSL_SOCKET_FACTORY = "javax.net.ssl.SSLSocketFactory";
         final String SECURED_SMTP_PORT = "465";
         final String ENABLE = "true";
         
+        // Set SMTP connection properties
         Properties properties = new Properties();
         properties.put("mail.smtp.host", server);
         properties.put("mail.smtp.socketFactory.port", SECURED_SMTP_PORT);

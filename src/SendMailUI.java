@@ -15,40 +15,52 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class SendMailUI {
+	
+	// Exit on close button attribute
 	private final static int EXIT_ON_CLOSE = JFrame.EXIT_ON_CLOSE;
+	
+	// Default dimensions of components of Grid Bag Constraint layout
 	private final static int DEFAULT_WIDTH = 1;
 	private final static int DEFAULT_HEIGHT = 1;
 	
+	// Panel's initial dimension values
 	private final static int PANEL_WIDTH = 700;
 	private final static int PANEL_HEIGHT = 700;
 	
+	// Title of frame
 	private final static String TITLE = "Send Mail";
+	
+	// GridBagConstaints fill values
 	private final static int FILL_HORIZONTAL = GridBagConstraints.HORIZONTAL;
 	private final static int FILL_BOTH = GridBagConstraints.BOTH;
 	private final static int FILL_NONE = GridBagConstraints.NONE;
 	
-	private JLabel lblSMTPServer;
+	// UISetup object to setup UI
+	private UISetup setup;
 	
-	private JTextField txtSMTPServer;
-	private JTextField txtUser;
+	// Labels' variables
+	private JLabel lblSMTPServer, lblUsername, lblPassword, lblRecipient, lblSubject, lblMessage;
+	// Text fields' variables
+	private JTextField txtSMTPServer, txtUser, txtRecipient, txtSubject;
+	
+	// Password field
 	private JPasswordField txtPassword;
-	private JTextField txtRecipient;
-	private JTextField txtSubject;
+	
+	// Text field of message area
 	private JTextArea txtMessageArea;
+	// Scroll pane for message
 	private JScrollPane messagePane;
 	
+	// Send button
 	private JButton btnSend;
-	private UISetup setup;
-	private JLabel lblUsername;
-	private JLabel lblPassword;
-	private JLabel lblRecipient;
-	private JLabel lblSubject;
-	private JLabel lblMessage;
 	
 	
 	SendMailUI () {
+		// Initialize UISetup object
 		setup = new UISetup();
+		// Initialize UI components
 		initComponents();
+		// Add behaviors to components
 		addBehaviors();
 	}
 	
@@ -62,6 +74,7 @@ class SendMailUI {
 		// Add all component to panel
 		addComponents(mailPanel);
 		
+		// Create the frame
 		setup.createFrame(TITLE, EXIT_ON_CLOSE, mailPanel);
 	}
 	
@@ -95,13 +108,14 @@ class SendMailUI {
 	}
 	
 	/**
-	 * Add behaviors of components
+	 * Method to add behaviors to components
 	 */
 	private void addBehaviors() {
 		btnSend.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent event) {
+				// Get all strings in text fields
 				String smtpServer = txtSMTPServer.getText().trim();
 				String username = txtUser.getText().trim();
 				
@@ -111,13 +125,13 @@ class SendMailUI {
 				String subject = txtSubject.getText();
 				String message = txtMessageArea.getText();
 				
+				// Initialize send mail event
 				SendMailEvent sendMailEvent = new SendMailEvent(this);
 				sendMailEvent.setAuthenInfo(smtpServer, username, password);
 				sendMailEvent.setEmailContent(username, recipient, subject, message);
 				sendMailEvent.sendMail();
 				
 			}
-			
 		});
 	}
 	
@@ -171,6 +185,7 @@ class SendMailUI {
 				setup.getContraints(0, 7, 2, DEFAULT_HEIGHT, 0.0, 0.0, FILL_NONE)
 			};
 		
+		// Combine components with their constraints and add them to pane
 		for (int i = 0; i < components.length; i++) {
 			contentPane.add(components[i], constraints[i]);
 		}
